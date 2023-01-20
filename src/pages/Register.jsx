@@ -5,14 +5,16 @@ import { auth, storage, db } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -43,10 +45,12 @@ const Register = () => {
       //create empty user chats on firestore
       await setDoc(doc(db, "userChats", res.user.uid), {});
 
+      setLoading(false);
       navigate("/");
     } catch (err) {
       setErr(true);
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -66,8 +70,11 @@ const Register = () => {
           </label>
           <button type={"submit"}>Sign Up</button>
         </form>
+        {loading && <span>Creating profile...</span>}
         {err && <span>Something went wrong</span>}
-        <p>You do have an account? Login</p>
+        <p>
+          You do have an account? <Link to={"/login"}>Login</Link>
+        </p>
       </div>
     </div>
   );
