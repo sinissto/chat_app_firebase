@@ -4,12 +4,12 @@ import { AuthContext } from "./AuthContext";
 export const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
+  const { currentUser } = useContext(AuthContext);
+
   const INITIAL_STATE = {
     chatId: "null",
     user: {},
   };
-
-  const { currentUser } = useContext(AuthContext);
 
   const chatReducer = (state, action) => {
     switch (action.type) {

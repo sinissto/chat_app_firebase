@@ -6,9 +6,10 @@ import { ChatContext } from "../context/ChatContext";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
-
   const { currentUser } = useContext(AuthContext);
+
   const { dispatch } = useContext(ChatContext);
+  // console.log(dispatch);
 
   useEffect(() => {
     const getChats = () => {
@@ -26,15 +27,15 @@ const Chats = () => {
   }, [currentUser.uid]);
 
   const handleSelect = (user) => {
+    // dovuci poruke ako postoje za ovog korisnika i otvoriti novi prozor za dopisivanje
+
     dispatch({ type: "CHANGE_USER", payload: user });
   };
 
   return (
     <div className={"chats"}>
       {Object.entries(chats)
-        ?.sort((a, b) => {
-          return b[1].date - a[1].date;
-        })
+        ?.sort((a, b) => b[1].date - a[1].date)
         .map((chat) => {
           return (
             <div

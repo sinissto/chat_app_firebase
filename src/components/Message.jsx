@@ -10,13 +10,14 @@ const Message = ({ message }) => {
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
+    return () => {};
   }, [message]);
 
-  const style =
-    message.senderId === currentUser.uid ? "message owner" : "message";
-
   return (
-    <div className={style} ref={ref}>
+    <div
+      ref={ref}
+      className={`message ${message.senderId === currentUser.uid && "owner"}`}
+    >
       <div className="messageInfo">
         <img
           src={
@@ -30,8 +31,9 @@ const Message = ({ message }) => {
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
-
-        {message.img && <img src={message.img} alt="" />}
+        {/*{message.text && <p>{message.text}</p>}*/}
+        {/*<img src={message.photoURL} alt="" />*/}
+        {message.photoURL && <img src={message.photoURL} alt="" />}
       </div>
     </div>
   );

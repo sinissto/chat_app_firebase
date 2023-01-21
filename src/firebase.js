@@ -1,15 +1,17 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBhedOwKB-13L6Ta3W_-fDebJOp1ITzq7o",
-  authDomain: "chat-10f64.firebaseapp.com",
-  projectId: "chat-10f64",
-  storageBucket: "chat-10f64.appspot.com",
-  messagingSenderId: "477231302114",
-  appId: "1:477231302114:web:7aeaa5121d3fdcdb67a5bb",
+  apiKey: "AIzaSyD_9w0SOAJ-yvvnvPEqMsaYalgco4iXym8",
+  authDomain: "chat-ad8b8.firebaseapp.com",
+  projectId: "chat-ad8b8",
+  storageBucket: "chat-ad8b8.appspot.com",
+  messagingSenderId: "483751395188",
+  appId: "1:483751395188:web:d34a47ec6ecf394b617621",
 };
 
 // Initialize Firebase
