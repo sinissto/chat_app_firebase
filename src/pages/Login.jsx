@@ -17,12 +17,9 @@ const Login = () => {
     const password = e.target[1].value;
 
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res);
+      // const res = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
 
-      // Signed in
-
-      // ...
       setLoading(false);
       navigate("/");
     } catch (err) {
